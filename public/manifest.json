@@ -1,0 +1,26 @@
+{
+    "name": "ToReact",
+    "short_name": "ToReact",
+    "description": "Vite + React 快速开发模板",
+    "lang": "zh-CN",
+    "start_url": "/path/",
+    "scope": "/path/",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#edece7",
+    "theme_color": "#4173b3",
+    "icons": [
+        {
+            "src": "/path/favicon.ico",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/path/favicon.ico",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

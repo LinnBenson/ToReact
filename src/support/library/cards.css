@@ -1,0 +1,254 @@
+div.unit-card {
+    --cardPadding: var( --padding );
+    margin-bottom: 16px;
+    background: rgb( var( --r6 ) );
+    border-radius: var( --radius );
+    overflow: hidden;
+}
+div.unit-card div.unit-card-header {
+    --size: calc( var( --fontSize ) * 2 - 2px );
+    display: flex;
+    align-items: center;
+    padding: 6px calc( var( --cardPadding ) - 8px );
+    border-bottom: 1px solid rgb( var( --r1 ), 0.15 );
+}
+div.unit-card div.unit-card-header h5.unit-card-title {
+    flex: 1;
+}
+div.unit-card div.unit-card-header h5.unit-card-title i::before { font-weight: bold !important; }
+div.unit-card div.unit-card-header i.unit-card-status-button {
+    padding-left: calc( var( --cardPadding ) - 8px );
+    margin-left: 4px;
+    border-left: 1px solid rgb( var( --r1 ), 0.1 );
+    box-sizing: content-box;
+}
+div.unit-card div.unit-card-content {
+    padding: var( --cardPadding );
+}
+div.unit-card div.unit-card-footer {
+    padding: 6px var( --cardPadding );
+    background: rgb( var( --r1 ), 0.03 );
+    border-top: 1px solid rgb( var( --r1 ), 0.15 );
+}
+div.unit-card div.unit-card-footer,
+div.unit-card div.unit-card-footer * {
+    font-size: 12px;
+}
+div.unit-card div.unit-card-status-box {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
+}
+div.unit-card.unit-card-status-open div.unit-card-status-box {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+div.unit-card.unit-card-status-closed div.unit-card-header {
+    border-bottom: 0px;
+}
+div.unit-card div.unit-card-status-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+@media ( max-width: 580px ) {
+    div.unit-card {
+         --cardPadding: calc( var( --padding ) / 3 + 6px );
+    }
+    div.unit-card div.unit-card-header {
+        padding: 6px var( --cardPadding );
+    }
+}
+/**
+ * 加载组件样式
+ */
+div.unit-loading {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+div.unit-loading div.unit-loading-animation {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99998;
+}
+div.unit-loading.unit-loading-active div.unit-loading-animation {
+    opacity: 1;
+    pointer-events: auto;
+}
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r0 { background: rgb( var( --r0 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r1 { background: rgb( var( --r1 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r2 { background: rgb( var( --r2 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r3 { background: rgb( var( --r3 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r4 { background: rgb( var( --r4 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r5 { background: rgb( var( --r5 ), 0.5 ); }
+div.unit-loading div.unit-loading-animation.unit-loading-mask-r6 { background: rgb( var( --r6 ), 0.5 ); }
+div.unit-loading div.unit-loading-body {
+    min-height: var( --minHeight );
+}
+div.unit-loading div.unit-loading-animation svg.unit-loading-animation-default-box {
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    padding: 2px;
+    overflow: visible;
+}
+div.unit-loading div.unit-loading-animation svg.unit-loading-animation-default-box > circle {
+    stroke: rgb( var( --r3 ) );
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    transform-origin: 50% 50%;
+    transition: all 0.2s ease-in-out 0s;
+    animation: 2s linear 0s infinite normal none running loading-spinner;
+}
+@keyframes loading-spinner {
+    0% {
+        stroke-dasharray: 0.01px, 43.97px;
+        transform: rotate( 0 );
+    }
+    50% {
+        stroke-dasharray: 21.99px, 21.99px;
+        transform: rotate( 450deg );
+    }
+    100% {
+        stroke-dasharray: 0.01px, 43.97px;
+        transform: rotate( 1080deg );
+    }
+}
+div.unit-loading div.unit-loading-animation.unit-loading-animation-text {
+    box-sizing: border-box;
+    align-items: stretch;
+    padding: 24px;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-text-box {
+    --lineHeight: 16px;
+    --lineGap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var( --lineGap );
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-text-box span {
+    flex: 0 0 var( --lineHeight );
+    height: var( --lineHeight );
+    background: linear-gradient(
+        90deg,
+        rgba( var( --r1 ), 0.06 ) 25%,
+        rgba( var( --r1 ), 0.12 ) 37%,
+        rgba( var( --r1 ), 0.06 ) 63%
+    );
+    background-size: 400% 100%;
+    border-radius: var( --radius );
+    animation: loading-text-highlight 1.4s ease infinite;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-text-box span:last-child { width: 60%; }
+@keyframes loading-text-highlight {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+@media ( prefers-reduced-motion: reduce ) {
+    div.unit-loading div.unit-loading-animation div.unit-loading-animation-text-box span { animation: none; }
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-ai-box {
+    --fill-color: rgb( var( --r3 ) );
+    --shine-color: rgb( var( --r6 ) );
+    transform: scale( 0.5 );
+    width: 100px;
+    height: auto;
+    position: relative;
+    filter: drop-shadow( 0 0 10px var( --shine-color ) );
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-ai-box #pegtopone {
+    position: absolute;
+    animation: flowe-one 1s linear infinite;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-ai-box #pegtoptwo {
+    position: absolute;
+    opacity: 0;
+    transform: scale( 0 ) translateY( -200px ) translateX( -100px );
+    animation: flowe-two 1s linear infinite;
+    animation-delay: 0.3s;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-ai-box #pegtopthree {
+    position: absolute;
+    opacity: 0;
+    transform: scale( 0 ) translateY( -200px ) translateX( 100px );
+    animation: flowe-three 1s linear infinite;
+    animation-delay: 0.6s;
+}
+div.unit-loading div.unit-loading-animation div.unit-loading-animation-ai-box svg g path:first-child { fill: var( --fill-color ); }
+@keyframes flowe-one {
+    0% {
+        transform: scale( 0.5 ) translateY( -200px );
+        opacity: 0;
+    }
+    25% {
+        transform: scale( 0.75 ) translateY( -100px );
+        opacity: 1;
+    }
+    50% {
+        transform: scale( 1 ) translateY( 0 );
+        opacity: 1;
+    }
+    75% {
+        transform: scale( 0.5 ) translateY( 50px );
+        opacity: 1;
+    }
+    100% {
+        transform: scale( 0 ) translateY( 100px );
+        opacity: 0;
+    }
+}
+@keyframes flowe-two {
+    0% {
+        transform: scale( 0.5 ) rotateZ( -10deg ) translateY( -200px ) translateX( -100px );
+        opacity: 0;
+    }
+    25% {
+        transform: scale( 1 ) rotateZ( -5deg ) translateY( -100px ) translateX( -50px );
+        opacity: 1;
+    }
+    50% {
+        transform: scale( 1 ) rotateZ( 0deg ) translateY( 0 ) translateX( -25px );
+        opacity: 1;
+    }
+    75% {
+        transform: scale( 0.5 ) rotateZ( 5deg ) translateY( 50px ) translateX( 0 );
+        opacity: 1;
+    }
+    100% {
+        transform: scale( 0 ) rotateZ( 10deg ) translateY( 100px ) translateX( 25px );
+        opacity: 0;
+    }
+}
+@keyframes flowe-three {
+    0% {
+        transform: scale( 0.5 ) rotateZ( 10deg ) translateY( -200px ) translateX( 100px );
+        opacity: 0;
+    }
+    25% {
+        transform: scale( 1 ) rotateZ( 5deg ) translateY( -100px ) translateX( 50px );
+        opacity: 1;
+    }
+    50% {
+        transform: scale( 1 ) rotateZ( 0deg ) translateY( 0 ) translateX( 25px );
+        opacity: 1;
+    }
+    75% {
+        transform: scale( 0.5 ) rotateZ( -5deg ) translateY( 50px ) translateX( 0 );
+        opacity: 1;
+    }
+    100% {
+        transform: scale( 0 ) rotateZ( -10deg ) translateY( 100px ) translateX( -25px );
+        opacity: 0;
+    }
+}
